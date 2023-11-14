@@ -1,24 +1,31 @@
 package org.example.leetcode;
 
+import java.time.Instant;
 import java.util.*;
 
 public class LeetCodeMatrixProblems {
 
     public int numIslands(char[][] grid) {
         List<List<Integer>> visited = new ArrayList<>();
+        Map<Integer, List<Integer>> visitedMap = new HashMap<>(); // todo: row, and col list map that has been visited
 
         int numIslands = 0;
 
+        System.out.printf("%s, number of rows: %d, number of cols: %d\n", Instant.now(), grid.length, grid[0].length);
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
+
                 if (grid[i][j] == '1') {
-                    if (visited.contains(Arrays.asList(i, j)))
+                    if (visited.contains(Arrays.asList(i, j))) {
+                        System.out.printf("%s, already visited: %d, %d\n", Instant.now(), i, j);
                         continue;
+                    }
                     visited.add(Arrays.asList(i, j));
                     visitNeighbors(grid, i, j, visited);
                     numIslands++;
                 }
             }
+            System.out.printf("%s, processed row : %d\n", Instant.now(), i);
         }
         return numIslands;
     }
@@ -32,7 +39,7 @@ public class LeetCodeMatrixProblems {
         int row, col;
         row = x - 1;
         col = y;
-        if (row >= 0 && grid[row][col] == '1') {
+        if (row >= 0 && col >= 0 && row <= grid.length - 1 && col <= grid[0].length - 1 && grid[row][col] == '1') {
             if (!visited.contains(Arrays.asList(row, col))) {
                 visited.add(Arrays.asList(row, col));
                 visitNeighbors(grid, row, col, visited);
@@ -40,7 +47,7 @@ public class LeetCodeMatrixProblems {
         }
         row = x;
         col = y - 1;
-        if (col >= 0 && grid[row][col] == '1') {
+        if (row >= 0 && col >= 0 && row <= grid.length - 1 && col <= grid[0].length - 1 && grid[row][col] == '1') {
             if (!visited.contains(Arrays.asList(row, col))) {
                 visited.add(Arrays.asList(row, col));
                 visitNeighbors(grid, row, col, visited);
@@ -49,7 +56,7 @@ public class LeetCodeMatrixProblems {
 
         row = x;
         col = y + 1;
-        if (col <= grid[0].length - 1 && grid[row][col] == '1') {
+        if (row >= 0 && col >= 0 && row <= grid.length - 1 && col <= grid[0].length - 1 && grid[row][col] == '1') {
             if (!visited.contains(Arrays.asList(row, col))) {
                 visited.add(Arrays.asList(row, col));
                 visitNeighbors(grid, row, col, visited);
@@ -58,7 +65,7 @@ public class LeetCodeMatrixProblems {
 
         row = x + 1;
         col = y;
-        if (row <= grid.length - 1 && grid[row][col] == '1') {
+        if (row >= 0 && col >= 0 && row <= grid.length - 1 && col <= grid[0].length - 1 && grid[row][col] == '1') {
             if (!visited.contains(Arrays.asList(row, col))) {
                 visited.add(Arrays.asList(row, col));
                 visitNeighbors(grid, row, col, visited);
