@@ -7,7 +7,7 @@ public class LeetCodeMatrixProblems {
 
     public int numIslands(char[][] grid) {
         List<List<Integer>> visited = new ArrayList<>();
-        Map<Integer, List<Integer>> visitedMap = new HashMap<>(); // todo: row, and col list map that has been visited
+        Map<Integer, Set<Integer>> visitedMap = new HashMap<>(); // todo: row, and col list map that has been visited
 
         int numIslands = 0;
 
