@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ValidSudokuTest {
+class LeetCodeMatrixProblemsTest {
 
-    ValidSudoku testclass = new ValidSudoku();
+    LeetCodeMatrixProblems testclass = new LeetCodeMatrixProblems();
 
     @Test
     void isValidSudoku() {
@@ -73,5 +73,17 @@ class ValidSudokuTest {
         };
         boolean retval = testclass.isValidSudoku(board);
         assertThat(retval).isTrue();
+    }
+
+    @Test
+    void numIslands() {
+        char[][] grid = {
+                {'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '1', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0','0', '0', '0', '0'}
+        };
+        int result = testclass.numIslands(grid);
+        assertThat(result).isEqualTo(1);
     }
 }
