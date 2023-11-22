@@ -11,7 +11,7 @@ class DijkstrasAlgoTest {
     DijkstrasAlgo dijkstrasAlgo = new DijkstrasAlgo();
 
     @Test
-    void shortestPath() {
+    void shortestPath1() {
         int n;
         List<List<Integer>> edges = new ArrayList<>();
         edges.add(Arrays.asList(0, 1, 10));
@@ -34,6 +34,20 @@ class DijkstrasAlgoTest {
         target.put(2, 3);
         target.put(3, 9);
         target.put(4, 5);
+
+        assertThat(result).containsExactlyInAnyOrderEntriesOf(target);
+    }
+
+    @Test
+    void shortestPath2() {
+        int n;
+        List<List<Integer>> edges = new ArrayList<>();
+        edges.add(Arrays.asList(0, 1, 5));
+
+        Map<Integer, Integer> result = dijkstrasAlgo.shortestPath(2, edges, 0);
+        Map<Integer, Integer> target = new HashMap<>();
+        target.put(0, 0);
+        target.put(1, 5);
 
         assertThat(result).containsExactlyInAnyOrderEntriesOf(target);
     }

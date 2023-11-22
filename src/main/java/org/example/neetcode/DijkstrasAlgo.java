@@ -42,6 +42,12 @@ public class DijkstrasAlgo {
                 if (dist == null) {
                     // need to find the source
                     retval.put(item.dest, total);
+                    List<Node> nexts = mynexts.get(item.dest);
+                    if (nexts != null) {
+                        for (int j = 0; j < nexts.size(); j++) {
+                            queue.add(nexts.get(j));
+                        }
+                    }
                 } else {
                     if (total < dist) {
                         retval.put(item.dest, total);
@@ -58,13 +64,6 @@ public class DijkstrasAlgo {
                                 }
                             }
                         }
-                    }
-                }
-
-                List<Node> nexts = mynexts.get(item.dest);
-                if (nexts != null) {
-                    for (int j = 0; j < nexts.size(); j++) {
-                        queue.add(nexts.get(j));
                     }
                 }
             }
