@@ -1,5 +1,7 @@
 package org.example.neetcode;
 
+import org.example.Node;
+
 import java.util.*;
 
 /**
@@ -31,18 +33,18 @@ public class DijkstrasAlgo {
                 Node item = itemsOnQueue.get(i);
 
                 int total = 0;
-                Integer srcdist = retval.get(item.src);
+                Integer srcdist = retval.get(item.getSrc());
                 if (srcdist != null) {
-                    total = srcdist + item.w;
+                    total = srcdist + item.getW();
                 } else {
-                    total = item.w;
+                    total = item.getW();
                 }
 
-                Integer dist = retval.get(item.dest);
+                Integer dist = retval.get(item.getDest());
                 if (dist == null) {
                     // need to find the source
-                    retval.put(item.dest, total);
-                    List<Node> nexts = mynexts.get(item.dest);
+                    retval.put(item.getDest(), total);
+                    List<Node> nexts = mynexts.get(item.getDest());
                     if (nexts != null) {
                         for (int j = 0; j < nexts.size(); j++) {
                             queue.add(nexts.get(j));
@@ -50,17 +52,17 @@ public class DijkstrasAlgo {
                     }
                 } else {
                     if (total < dist) {
-                        retval.put(item.dest, total);
+                        retval.put(item.getDest(), total);
                         // when we update a shortest distance in the retval,
                         // we also need to update the corresponding downstreams
                         // if the downstream is already calculated
-                        List<Node> nexts = mynexts.get(item.dest);
+                        List<Node> nexts = mynexts.get(item.getDest());
                         if (nexts != null) {
                             for (int k = 0; k < nexts.size(); k++) {
                                 Node knode = nexts.get(k);
-                                Integer kval = retval.get(knode.dest);
+                                Integer kval = retval.get(knode.getDest());
                                 if (kval != null) {
-                                    retval.put(knode.dest, total + knode.w);
+                                    retval.put(knode.getDest(), total + knode.getW());
                                 }
                             }
                         }
@@ -92,14 +94,3 @@ public class DijkstrasAlgo {
     }
 }
 
-class Node {
-    int src;
-    int dest;
-    int w;
-
-    public Node(int src, int dest, int w) {
-        this.src = src;
-        this.dest = dest;
-        this.w = w;
-    }
-}
