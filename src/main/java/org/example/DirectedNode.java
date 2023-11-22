@@ -3,12 +3,12 @@ package org.example;
 /**
  * a very generic Node for a directed graph
  */
-public class Node {
+public class DirectedNode {
     int src;
     int dest;
     int w;
 
-    public Node(int src, int dest, int w) {
+    public DirectedNode(int src, int dest, int w) {
         this.src = src;
         this.dest = dest;
         this.w = w;
