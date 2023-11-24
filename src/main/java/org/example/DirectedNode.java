@@ -37,4 +37,13 @@ public class DirectedNode {
     public void setW(int w) {
         this.w = w;
     }
+
+    @Override
+    public String toString() {
+        return "DirectedNode{" +
+                "src=" + src +
+                ", dest=" + dest +
+                ", w=" + w +
+                '}';
+    }
 }

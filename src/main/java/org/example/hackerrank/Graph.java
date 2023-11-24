@@ -56,6 +56,9 @@ public class Graph {
             for (int i = 0; i < itemsOnQueue.size(); i++) {
                 DirectedNode item = itemsOnQueue.get(i);
 
+                System.out.printf("item: %s\n", item.toString());
+                Integer dist = map.get(item.getDest());
+
                 int total = 0;
                 Integer srcdist = map.get(item.getSrc());
                 if (srcdist != null) {
@@ -64,9 +67,7 @@ public class Graph {
                     total = item.getW();
                 }
 
-                Integer dist = map.get(item.getDest());
                 if (dist == null) {
-                    // need to find the source
                     map.put(item.getDest(), total);
                     List<DirectedNode> nexts = mynexts.get(item.getDest());
                     if (nexts != null) {
